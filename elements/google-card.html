@@ -1,0 +1,45 @@
+<polymer-element name="google-card" attributes="link">
+	<template>
+		<style>
+		    :host {
+		      font-family: 'RobotoDraft', sans-serif;
+		      border-bottom: 1px solid grey;
+		      max-width: 800px;
+		    }
+
+		    ::content h1 {
+		    	color: #494949;
+		    	font-size: 18px;
+		    	font-weight: normal;
+		    	text-decoration: none;
+		    	cursor: pointer;
+		    }
+
+		    ::content h2 {
+		    	color: #7BAC52;
+		    	font-size: 12px;
+		    	line-height: 2px;
+		    	font-weight: normal;
+		    	cursor: pointer;
+		    }
+
+		    ::content p {
+		    	color: #949494;
+		    	font-size: 14px;
+		    	margin-bottom: 50px;
+		    }
+		</style>
+		<div class="content">
+		<content on-click="{{navigate}}" select="h1"></content>
+		<content on-click="{{navigate}}" select="h2"></content>
+		<content></content>
+	</div>
+	</template>
+	<script>
+		Polymer({
+			navigate: function(){
+				window.open("http://"+this.link,'_blank');
+			}
+		})
+	</script>
+</polymer-element>
