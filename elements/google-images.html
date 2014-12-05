@@ -1,0 +1,29 @@
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="google-card.html">
+
+<polymer-element name="google-images" attributes="q">
+	<template>
+		<style>
+		    :host {
+		      font-family: 'RobotoDraft', sans-serif;
+		      margin-top: 50px;
+		    }
+		</style>
+			<google-card link="looool">
+				<h1>a</h1>
+				<h2>v</h2>
+				<p>c</p>
+			</google-card>
+	</template>
+	<script>
+		Polymer({
+			response:  null,
+			handleResponse: function(e){
+				this.response = e.detail.response;
+				console.dir(this.response);
+			}
+		})
+	</script>
+</polymer-element>

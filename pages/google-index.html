@@ -2,52 +2,56 @@
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/core-media-query/core-media-query.html">
 
 <polymer-element name="google-index">
 	<template>
 		<style>
-		    :host {
-		      font-family: 'RobotoDraft', sans-serif;
-		    }
+			:host {
+				font-family: 'RobotoDraft', sans-serif;
+			}
 
-		    #global {
-		    	height: 100%;
-		    }
-		    .content {
-		    	margin-top: 0 auto;
-		    }
-		    
-
-		    .top-bar {
-		    	right: 0px;
+			.core-header {
+				background-color: white;
 				line-height: 40px;
 				font-weight: 300;
-		    }
-
-		    paper-input {
-		    	width: 90%;
-		    }
-		</style>
-		<div vertical layout>
-			<div class="top-bar" horizontal layout end-justified>
-			    <paper-icon-button icon="settings"></paper-icon-button>
-			    <paper-icon-button icon="apps"></paper-icon-button>
-			    <div>lespes29@gmail.com</div>
-			    <paper-icon-button icon="arrow-drop-down"></paper-icon-button>
-			</div>
-			<div id="global" vertical layout center>
-				<div class="content" vertical layout>
-					<img width="90%" on-click="{{search}}" src="https://www.google.be/images/srpr/logo11w.png" hero-id="googleLogo" hero>
-					<paper-input id="searchInput" floatingLabel label="Search something" on-change="{{search}}" hero-id="searchInput" hero></paper-input>
-				</div>
-			</div>
-		</div>
-	</template>
-	<script>
-		Polymer({
-			search: function(e,detail,sender){
-				this.fire("search",this.$.searchInput.value)
+				font-size: 18px;
+				padding: 0 10px;
+				color: black;
+				transition: height 0.2s;
 			}
+
+			core-header-panel {
+				height: 100vh;
+			}
+		</style>
+		<core-header-panel mode="seamed">
+			<core-media-query query="max-width: 770px" queryMatches="{{phoneScreen}}"></core-media-query>
+
+			<core-toolbar class="core-header" justify="end" hero-id="toolbar" hero>
+				<paper-icon-button icon="settings"></paper-icon-button>
+				<paper-icon-button icon="apps"></paper-icon-button>
+				<div class="top-bar">iam@samuelcardillo.com</div>
+				<paper-icon-button icon="arrow-drop-down"></paper-icon-button>
+			</core-toolbar>
+			
+			<div class="content" vertical layout center>
+				<img width="{{width}}%" on-click="{{search}}" src="https://www.google.be/images/srpr/logo11w.png" hero-id="googleLogo" hero>
+				<paper-input style="width: {{width}}%;" id="searchInput" floatingLabel label="Search something" on-change="{{search}}" hero-id="searchInput" hero></paper-input>
+			</div>
+		</core-header-panel>
+	</template>
+<script>
+Polymer({
+	width: 50,
+	ready: function(){
+		this.addEventListener('core-media-change', function(e) {
+			this.width = (this.phoneScreen) ? 90 : 50
 		})
-	</script>
+	},
+	search: function(e,detail,sender){
+		this.fire("search",this.$.searchInput.value)
+	}
+})
+</script>
 </polymer-element>

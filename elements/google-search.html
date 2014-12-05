@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="google-card.html">
+
+<polymer-element name="google-search" attributes="q">
+	<template>
+		<style>
+		    :host {
+		      font-family: 'RobotoDraft', sans-serif;
+		      margin-top: 50px;
+		    }
+		</style>
+
+		<core-ajax
+			auto
+		    url="../backend.php"
+		    params='{"q":"{{q}}"}'
+		    handleAs="json"
+		    on-core-response="{{handleResponse}}"
+		    id="coreAjax"></core-ajax>
+
+		<template repeat="{{values in response}}" >
+			<google-card link="{{values.site}}">
+				<h1>{{values.lienTitre}}</h1>
+				<h2>{{values.site}}</h2>
+				<p>{{values.description}}</p>
+			</google-card>
+		</template>
+	</template>
+	<script>
+		Polymer({
+			response:  null,
+			handleResponse: function(e){
+				this.response = e.detail.response;
+				console.dir(this.response);
+				console.dir("element ici !")
+			}
+		})
+	</script>
+</polymer-element>

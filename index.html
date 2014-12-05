@@ -9,28 +9,24 @@
   <link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
   <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
   <link rel="import" href="pages/google-index.html">
-  <link rel="import" href="pages/google-search.html">
+  <link rel="import" href="pages/google-result.html">
 </head>
 <body fullbleed layout vertical unresolved>
   <template is="auto-binding">
-    <core-header-panel mode="waterfall" fit>
-      <core-animated-pages selected="0" transitions="hero-transition cross-fade-all">
-        <google-index></google-index>
-        <google-search q=""></google-search>
-      </core-animated-pages>
-    </core-header-panel>
+    <core-animated-pages selected="0" transitions="hero-transition cross-fade-all">
+      <google-index></google-index>
+      <google-result q=""></google-result>
+    </core-animated-pages>
   </template>
   <script type="text/javascript">
     document.addEventListener("search",function(e){
-      document.querySelector('google-search').setAttribute("q",e.detail)
+      document.querySelector('google-result').setAttribute("q",e.detail)
       document.querySelector('core-animated-pages').selected = 1;
-      template.route = "search?q="+e.detail;
     })
 
     document.addEventListener("goBack",function(e){
-      document.querySelector('google-search').setAttribute("q",e.detail)
+      document.querySelector('google-result').setAttribute("q",e.detail)
       document.querySelector('core-animated-pages').selected = 0;
-      template.route = "search";
     })
   </script>
 </body>

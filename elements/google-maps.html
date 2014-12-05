@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+
+<polymer-element name="google-maps" attributes="q">
+	<template>
+		<style>
+		    :host {
+		      font-family: 'RobotoDraft', sans-serif;
+		      margin-top: 50px;
+		    }
+		</style>
+
+		<google-map latitude="50.70410000000003" longitude="7.140149999999994" zoom="17" id="google_map"></google-map>
+	</template>
+	<script>
+		Polymer({
+			response:  null,
+			handleResponse: function(e){
+				this.response = e.detail.response;
+				console.dir(this.response);
+				console.dir("element ici !")
+			}
+		})
+	</script>
+</polymer-element>
